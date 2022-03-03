@@ -5,18 +5,21 @@ class Cliente {
 
 class ContaCorrente{
     agencia;
-    #saldo = 1000;
+    #saldo = 100;
 
     depositar(valor){
-        if(valor > 0) {
-            this.#saldo += valor;
-            console.log(`Seu saldo atualizado é de R$${this.#saldo}`);
+        if(valor < 0) {
+            return
         }
+        this.#saldo += valor;
+        console.log(`Seu saldo atualizado é de R$${this.#saldo}`);
     }
 
     sacar(valor){
         if (this.#saldo >= valor){
             this.#saldo -= valor;
+            console.log(`Seu saldo atualizado é de R$${this.#saldo}`);
+            return valor;
         } else {
             console.log('Você não possui saldo suficiente')
         }
@@ -38,8 +41,8 @@ ContaCorrenteRicardo.agencia = 1001;
 ContaCorrenteRicardo.depositar(150);
 ContaCorrenteRicardo.depositar(50);
 
+var valorSacado = ContaCorrenteRicardo.sacar(50);
 
-
-console.log(ContaCorrenteRicardo);
+console.log(valorSacado);
 
 
