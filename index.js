@@ -1,30 +1,5 @@
-class Cliente {
-    nome;
-    cpf;
-}
-
-class ContaCorrente{
-    agencia;
-    #saldo = 100;
-
-    depositar(valor){
-        if(valor < 0) {
-            return
-        }
-        this.#saldo += valor;
-        console.log(`Seu saldo atualizado é de R$${this.#saldo}`);
-    }
-
-    sacar(valor){
-        if (this.#saldo >= valor){
-            this.#saldo -= valor;
-            console.log(`Seu saldo atualizado é de R$${this.#saldo}`);
-            return valor;
-        } else {
-            console.log('Você não possui saldo suficiente')
-        }
-    }
-}
+import { Cliente } from "./Cliente.js";
+import { ContaCorrente } from "./ContaCorrente.js";
 
 const cliente1 = new Cliente();
 cliente1.nome = "Ricardo";
@@ -44,5 +19,4 @@ ContaCorrenteRicardo.depositar(50);
 var valorSacado = ContaCorrenteRicardo.sacar(50);
 
 console.log(valorSacado);
-
 
