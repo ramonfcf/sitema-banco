@@ -9,7 +9,7 @@ Projeto realizado durante o curso de JavaScript: introdução a Orientação a O
 * Métodos
 * Atributos
 * Atributos Privados
-* Acessores Set e Get
+* Assessores Set e Get
 * Construtores
 * Boas práticas
 
