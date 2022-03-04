@@ -1,34 +1,62 @@
+import { Cliente } from "./Cliente.js";
 
 export class ContaCorrente{
+    static numeroDeContas = 0;
     agencia;
-    cliente;
+    #cliente;
     #saldo = 0;
+    
 
-    saldo() {
-        console.log(`${this.cliente.nome}, seu saldo atual é de R$${this.#saldo}.`);
-        return '';
+
+
+
+    set cliente(novoValor){
+        if(novoValor instanceof Cliente){
+            this.#cliente = novoValor;
+        }
+    }
+
+    get cliente(){
+        return this.#cliente;
+    }
+
+    get saldo(){
+        return this.#saldo;
+    }
+
+
+
+
+
+    constructor(cliente, agencia){
+        this.agencia = agencia;
+        this.cliente = cliente;
+        ContaCorrente.numeroDeContas +=1;
+    }
+
+
+
+
+
+    sacar(valor){
+        if(this.#saldo >= valor){
+            this.#saldo -= valor;
+            return valor;
+        }
     }
 
     depositar(valor){
-        if(valor < 0) {
-            return
-        }
-        this.#saldo += valor;
-        console.log(`${this.cliente.nome}, após o depósito, seu saldo atualizado é de R$${this.#saldo}.`);
+        if(valor <= 0)
+        {
+            return;
+        } 
+        this.#saldo += valor;           
     }
 
-    sacar(valor){
-        if (this.#saldo >= valor){
-            this.#saldo -= valor;
-            console.log(`${this.cliente.nome}, após o saque, seu saldo atualizado é de R$${this.#saldo}.`);
-            return valor;
-        } else {
-            console.log(`${this.cliente.nome}Você não possui saldo suficiente para sacar.`);
-        }
-    }
-
-    transferir(valor, conta){
-        const valoSacado = this.sacar(valor);
-        conta.depositar(valoSacado);
+    tranferir(valor, conta){
+        
+        const valorSacado = this.sacar(valor);
+        conta.depositar(valorSacado);
+        
     }
 }
